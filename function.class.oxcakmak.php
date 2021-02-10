@@ -116,12 +116,12 @@ class oxcakmak {
         for($i=0;$i<$strLen;$i++){ $strLenStar .= "*"; }
         for($i=0;$i<($strLen - $start);$i++){ $strMinusStar .= "*"; }
         if(empty($start)){
-            echo $strLenStar; 
+            return $strLenStar; 
         }else{
             if($strLen > $start){
-                echo substr($str, 0, $start).$strMinusStar;
+                return substr($str, 0, $start).$strMinusStar;
             }else{
-               echo $strLenStar; 
+               return $strLenStar; 
             }
         }
         
