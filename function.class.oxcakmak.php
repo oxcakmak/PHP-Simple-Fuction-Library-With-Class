@@ -109,17 +109,22 @@ class oxcakmak {
     * Using: $oxcakmak->hideImportantValues("info@oxcakmak.com", 4);
     * Output: info***********
     */
-    public function hideImportantValues($str, $start){
+    public function hideImportantValues($str, $start = null){
         $strLen = strlen($str);
         $strLenStar = "";
         $strMinusStar = "";
         for($i=0;$i<$strLen;$i++){ $strLenStar .= "*"; }
         for($i=0;$i<($strLen - $start);$i++){ $strMinusStar .= "*"; }
-        if($strLen > $start){
-            echo substr($str, 0, $start).$strMinusStar;
+        if(empty($start)){
+            echo $strLenStar; 
         }else{
-           echo $strLenStar; 
+            if($strLen > $start){
+                echo substr($str, 0, $start).$strMinusStar;
+            }else{
+               echo $strLenStar; 
+            }
         }
+        
     }
     
     /*
