@@ -5,7 +5,7 @@
 * E-Mail: info@oxcakmak.com
 * Website: https://oxcakmak.com/
 * Creation Date: 17.01.2020
-* Latest Version: v1.1.5
+* Latest Version: v1.1.6
 */
 class oxcakmak {
     /*
@@ -102,6 +102,24 @@ class oxcakmak {
     */
     public function strClean($str){
 		return htmlspecialchars(strip_tags(stripslashes(trim($str))), ENT_QUOTES, 'UTF-8');
+    }
+	
+    /*
+    * Cleans the entered illegal characters
+    * Using: $oxcakmak->hideImportantValues("info@oxcakmak.com", 4);
+    * Output: info***********
+    */
+    public function hideImportantValues($str, $start){
+        $strLen = strlen($str);
+        $strLenStar = "";
+        $strMinusStar = "";
+        for($i=0;$i<$strLen;$i++){ $strLenStar .= "*"; }
+        for($i=0;$i<($strLen - $start);$i++){ $strMinusStar .= "*"; }
+        if($strLen > $start){
+            echo substr($str, 0, $start).$strMinusStar;
+        }else{
+           echo $strLenStar; 
+        }
     }
     
     /*
