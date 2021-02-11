@@ -105,7 +105,7 @@ class oxcakmak {
     }
 	
     /*
-    * Cleans the entered illegal characters
+    * Replaces important information with *
     * Using: $oxcakmak->hideImportantValues("info@oxcakmak.com", 4);
     * Output: info***********
     */
@@ -121,10 +121,19 @@ class oxcakmak {
             if($strLen > $start){
                 return substr($str, 0, $start).$strMinusStar;
             }else{
-               return $strLenStar; 
+                return $strLenStar; 
             }
         }
         
+    }
+
+    /*
+    * Checks if the specified data is empty
+    * Using: $oxcakmak->checkDataIsNull("info");
+    * Output: 0
+    */
+    function checkDataIsNull($str){
+        if($str==NULL){ return true; }else{ return false; }
     }
     
     /*
