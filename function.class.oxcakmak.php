@@ -5,7 +5,7 @@
 * E-Mail: info@oxcakmak.com
 * Website: https://oxcakmak.com/
 * Creation Date: 17.01.2020
-* Latest Version: v1.1.6
+* Latest Version: v1.2.0
 */
 class oxcakmak {
     /*
