@@ -193,7 +193,16 @@ class oxcakmak {
     * Output: (MD5) 3176a0571973682d06a05e3a064b09c7
     */
     public function randomHash(){
-		return bin2hex(openssl_random_pseudo_bytes(16));
+	return bin2hex(openssl_random_pseudo_bytes(16));
+    }
+	
+    /*
+    * Generates random color hex code
+    * Using: $oxcakmak->randomColorHex();
+    * Output: 00299b
+    */
+    public function randomColorHex(){
+	return str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
     }
 
     /*
