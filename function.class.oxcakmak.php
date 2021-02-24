@@ -5,7 +5,7 @@
 * E-Mail: info@oxcakmak.com
 * Website: https://oxcakmak.com/
 * Creation Date: 17.01.2020
-* Latest Version: v1.2.0
+* Latest Version: v1.2.1
 */
 class oxcakmak {
     /*
@@ -157,25 +157,25 @@ class oxcakmak {
     * Output: 3095ee219dea85f67c1e3a87898c1d5f7b712d20
     */
     public function hashPassword($string){
-		$string = hash("md2", $string);
-		$string = hash("sha1", $string);
-		$string = hash("md4", $string);
-		$string = hash("sha256", $string);
-		$string = hash("md5", $string);
-		$string = hash("sha384", $string);
-		$string = hash("ripemd128", $string);
-		$string = hash("sha512", $string);
-		$string = hash("ripemd160", $string);
-		$string = hash("whirlpool", $string);
-		$string = hash("ripemd256", $string);
-		$string = hash("snefru", $string);
-		$string = hash("ripemd320", $string);
-		$string = hash("gost", $string);
-		$string = hash("crc32", $string);
-		$string = hash("adler32", $string);
-		$string = hash("crc32b", $string);
-		$string = hash("sha1", $string);
-		return $string;
+	$string = hash("md2", $string);
+	$string = hash("sha1", $string);
+	$string = hash("md4", $string);
+	$string = hash("sha256", $string);
+	$string = hash("md5", $string);
+	$string = hash("sha384", $string);
+	$string = hash("ripemd128", $string);
+	$string = hash("sha512", $string);
+	$string = hash("ripemd160", $string);
+	$string = hash("whirlpool", $string);
+	$string = hash("ripemd256", $string);
+	$string = hash("snefru", $string);
+	$string = hash("ripemd320", $string);
+	$string = hash("gost", $string);
+	$string = hash("crc32", $string);
+	$string = hash("adler32", $string);
+	$string = hash("crc32b", $string);
+	$string = hash("sha1", $string);
+	return $string;
     }
     
     /*
@@ -204,6 +204,15 @@ class oxcakmak {
     public function randomColorHex(){
 	return str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
     }
+	
+    /*
+    * Generates random color hex code
+    * Using: $oxcakmak->randomHexColor();
+    * Output: 00299b
+    */
+    public function randomHexColor(){
+	    return sprintf('%06X', mt_rand(0, 0xFFFFFF));
+    }  
 
     /*
     * Parses youtube id address
