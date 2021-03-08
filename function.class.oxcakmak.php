@@ -5,7 +5,7 @@
 * E-Mail: info@oxcakmak.com
 * Website: https://oxcakmak.com/
 * Creation Date: 17.01.2020
-* Latest Version: v1.2.1
+* Latest Version: v1.2.4
 */
 class oxcakmak {
     /*
@@ -213,6 +213,32 @@ class oxcakmak {
     public function randomHexColor(){
 	    return sprintf('%06X', mt_rand(0, 0xFFFFFF));
     }  
+    /*
+    * Brings the past date and time
+    * Using: $oxcakmak->latestDate();
+    * Output: 01.01.2022-17:50
+    */
+    public function latestDateTime(){
+	    return date("d.m.Y-H:i");
+    }
+
+    /*
+    * Brings past history
+    * Using: $oxcakmak->latestOnlyDate();
+    * Output: 01.01.2022
+    */
+    public function latestDateTime(){
+	    return date("d.m.Y");
+    }
+
+    /*
+    * Brings the past hour
+    * Using: $oxcakmak->latestOnlyHour();
+    * Output: 17:50
+    */
+    public function latestOnlyHour(){
+	    return date("H:i");
+    }
 
     /*
     * Parses youtube id address
