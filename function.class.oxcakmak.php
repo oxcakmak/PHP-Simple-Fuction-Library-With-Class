@@ -5,7 +5,7 @@
 * E-Mail: info@oxcakmak.com
 * Website: https://oxcakmak.com/
 * Creation Date: 17.01.2020
-* Latest Version: v1.2.4
+* Latest Version: v1.2.5
 */
 class oxcakmak {
     /*
@@ -157,25 +157,38 @@ class oxcakmak {
     * Output: 3095ee219dea85f67c1e3a87898c1d5f7b712d20
     */
     public function hashPassword($string){
-	$string = hash("md2", $string);
-	$string = hash("sha1", $string);
-	$string = hash("md4", $string);
-	$string = hash("sha256", $string);
-	$string = hash("md5", $string);
-	$string = hash("sha384", $string);
-	$string = hash("ripemd128", $string);
-	$string = hash("sha512", $string);
-	$string = hash("ripemd160", $string);
-	$string = hash("whirlpool", $string);
-	$string = hash("ripemd256", $string);
-	$string = hash("snefru", $string);
-	$string = hash("ripemd320", $string);
-	$string = hash("gost", $string);
-	$string = hash("crc32", $string);
-	$string = hash("adler32", $string);
-	$string = hash("crc32b", $string);
-	$string = hash("sha1", $string);
-	return $string;
+		$string = hash("md2", $string);
+		$string = hash("sha1", $string);
+		$string = hash("md4", $string);
+		$string = hash("sha256", $string);
+		$string = hash("md5", $string);
+		$string = hash("sha384", $string);
+		$string = hash("ripemd128", $string);
+		$string = hash("sha512", $string);
+		$string = hash("ripemd160", $string);
+		$string = hash("whirlpool", $string);
+		$string = hash("ripemd256", $string);
+		$string = hash("snefru", $string);
+		$string = hash("ripemd320", $string);
+		$string = hash("gost", $string);
+		$string = hash("crc32", $string);
+		$string = hash("adler32", $string);
+		$string = hash("crc32b", $string);
+		$string = hash("sha1", $string);
+		return $string;
+    }
+
+    /*
+    * Encrypt text
+    * Using: $oxcakmak->speHash("admin");
+    * Output: 3095ee219dea85f67c1e3a87898c1d5f7b712d20
+    */
+    public function speHash($string){
+		$string = hash("crc32", $string);
+		$string = hash("sha1", $string);
+        $string = hash("sha256", $string);
+        $string = hash("md5", $string);
+		return $string;
     }
     
     /*
@@ -193,7 +206,7 @@ class oxcakmak {
     * Output: (MD5) 3176a0571973682d06a05e3a064b09c7
     */
     public function randomHash(){
-	return bin2hex(openssl_random_pseudo_bytes(16));
+	    return bin2hex(openssl_random_pseudo_bytes(16));
     }
 	
     /*
@@ -202,9 +215,9 @@ class oxcakmak {
     * Output: 00299b
     */
     public function randomColorHex(){
-	return str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
+	    return str_pad(dechex(rand(0x000000, 0xFFFFFF)), 6, 0, STR_PAD_LEFT);
     }
-	
+
     /*
     * Generates random color hex code
     * Using: $oxcakmak->randomHexColor();
@@ -212,7 +225,8 @@ class oxcakmak {
     */
     public function randomHexColor(){
 	    return sprintf('%06X', mt_rand(0, 0xFFFFFF));
-    }  
+    }
+
     /*
     * Brings the past date and time
     * Using: $oxcakmak->latestDate();
@@ -227,7 +241,7 @@ class oxcakmak {
     * Using: $oxcakmak->latestOnlyDate();
     * Output: 01.01.2022
     */
-    public function latestDateTime(){
+    public function latestDate(){
 	    return date("d.m.Y");
     }
 
@@ -315,7 +329,8 @@ class oxcakmak {
     * Using: $oxcakmak->checkIsMail("info@oxcakmak.com", $domains);
     * Output: 0
     */
-    public function checkIsMail($email, $domains){
+    public function checkIsMail($email){
+        $domains = array('gmail.com','yahoo.com','hotmail.com','outlook.com','msn.com','yandex.com');
 		foreach ($domains as $domain) { 
 			$pos = @strpos($email, $domain, strlen($email) - strlen($domain));
 			if ($pos === false){ continue; } 
