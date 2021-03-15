@@ -469,7 +469,7 @@ class oxcakmak {
     * Output: <script type="text/javascript" src="path/to/javascript.js" />
     */
     public function metaJs($js){
-        echo '<script type="text/javascript" src="'.$js.'" />'."\n";
+        echo '<script type="text/javascript" src="'.$js.'"></script>'."\n";
     }
 
     /*
