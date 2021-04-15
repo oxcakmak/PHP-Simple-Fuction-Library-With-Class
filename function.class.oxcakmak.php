@@ -5,7 +5,7 @@
 * E-Mail: info@oxcakmak.com
 * Website: https://oxcakmak.com/
 * Creation Date: 17.01.2020
-* Latest Version: v1.2.5
+* Latest Version: v1.3.0
 */
 class oxcakmak {
     /*
@@ -322,6 +322,20 @@ class oxcakmak {
     public function calcFileSize($size){
         if ($size < 1024){ return $size . ' B'; }else{ $size = $size / 1024; $units = ["KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"]; foreach ($units as $unit){ if(round($size, 2) >= 1024){ $size = $size / 1024; }else{ break; } } return round($size, 2) . ' ' . $unit; }
     }
+	
+	/*
+    * Outputs a filesize in human readable format
+    * Using: $oxcakmak->bytes2str(filesize("test.php"));
+    * Output: 5.2 KB
+    */
+    public function bytes2str($size){
+        $unit = array('','K','M','G','T','P','E','Z','Y');
+		while($val >= 1000){
+			$val /= 1024;
+			array_shift($unit);
+		}
+		return round($val, $round)." ".array_shift($unit).'B';
+    }
     
     /*
     * Checks the extensions of the entered e-mail addresses (Blocks temporary e-mail addresses)
@@ -356,6 +370,19 @@ class oxcakmak {
 		elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;
 		}else{ $ip = $remote; }
 		return $ip;
+    }
+	
+    
+    /*
+    * Computes the *full* URL of the current page (protocol, server, path, query parameters, etc)
+    * Using: $oxcakmak->getFullUrl();
+    * Output: http://localhost/test.php
+    */
+    public function getFullUrl(){
+		$s = empty($_SERVER['HTTPS']) ? '' : ($_SERVER['HTTPS'] == 'on') ? 's' : '';
+		$protocol = substr(strtolower($_SERVER['SERVER_PROTOCOL']), 0, strpos(strtolower($_SERVER['SERVER_PROTOCOL']), '/')) . $s;
+		$port = ($_SERVER['SERVER_PORT'] == '80') ? '' : (":".$_SERVER['SERVER_PORT']);
+		return $protocol . "://" . $_SERVER['HTTP_HOST'] . $port . $_SERVER['REQUEST_URI'];
     }
 
     /*
@@ -488,7 +515,7 @@ class oxcakmak {
     * Using: $oxcakmak->metaOpenGraph($variable);
     * Output: Deneme
     */
-    public function metaOpenGraph($title, $url, $image, $description){
+	public function metaOpenGraph($title, $url, $image, $description){
         echo '<meta name="og:title" content="'.$title.'">'."\n".'<meta name="og:url" content="'.$url.'">'."\n".'<meta name="og:image" content="'.$image.'">'."\n".'<meta name="og:description" content="'.$description.'">';
     }
 
