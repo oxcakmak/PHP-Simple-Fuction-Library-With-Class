@@ -5,7 +5,7 @@
 * E-Mail: info@oxcakmak.com
 * Website: https://oxcakmak.com/
 * Creation Date: 17.01.2020
-* Latest Version: v1.3.0
+* Latest Version: v1.3.2
 */
 class oxcakmak {
     /*
@@ -517,6 +517,38 @@ class oxcakmak {
     */
 	public function metaOpenGraph($title, $url, $image, $description){
         echo '<meta name="og:title" content="'.$title.'">'."\n".'<meta name="og:url" content="'.$url.'">'."\n".'<meta name="og:image" content="'.$image.'">'."\n".'<meta name="og:description" content="'.$description.'">';
+    }
+	
+    /*
+    * Get Http Accept Language
+    * Using: $oxcakmak->getDefaultLanguage();
+    * Output: Deneme
+    */
+    public function getDefaultLanguage() {
+        if (isset($_SERVER["HTTP_ACCEPT_LANGUAGE"]))
+           return $this->parseDefaultLanguage($_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+        else
+           return $this->parseDefaultLanguage(NULL);
+    }
+
+    /*
+    * Parse Language
+    * Using: $oxcakmak->parseDefaultLanguage($_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+    * Output: Deneme
+    */
+    public function parseDefaultLanguage($http_accept, $deflang = "en") {
+        if(isset($http_accept) && strlen($http_accept) > 1)  {
+           # Split possible languages into array
+           $x = explode(",",$http_accept);
+           foreach ($x as $val) {
+              #check for q-value and create associative array. No q-value means 1 by rule
+              if(preg_match("/(.*);q=([0-1]{0,1}.\d{0,4})/i",$val,$matches))
+                 $lang[$matches[1]] = (float)$matches[2];
+              else
+                 $lang[$val] = 1.0;
+           }
+        }
+        return strtolower($deflang);
     }
 
     /*
